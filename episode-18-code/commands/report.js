@@ -8,7 +8,7 @@ const errors = require("../utils/errors.js");
 module.exports.run = async (bot, message, args) => {
     message.delete();
     if(args[0] == "help"){
-      message.reply("Usage: !report <user> <reason>");
+      message.reply("Foloseste: bot.report <user> <reason>");
       return;
     }
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -19,13 +19,13 @@ module.exports.run = async (bot, message, args) => {
     let reportEmbed = new Discord.RichEmbed()
     .setDescription("Reports")
     .setColor(orange)
-    .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
-    .addField("Reported By", `${message.author} with ID: ${message.author.id}`)
-    .addField("Channel", message.channel)
-    .addField("Time", message.createdAt)
-    .addField("Reason", rreason);
+    .addField("Membru Raportat", `${rUser} with ID: ${rUser.id}`)
+    .addField("Raportat de", `${message.author} with ID: ${message.author.id}`)
+    .addField("Canal", message.channel)
+    .addField("Timp", message.createdAt)
+    .addField("Motiv", rreason);
 
-    let reportschannel = message.guild.channels.find(`name`, "reports");
+    let reportschannel = message.guild.channels.find(`name`, "reports","report");
     if(!reportschannel) return message.channel.send("Couldn't find reports channel.");
     reportschannel.send(reportEmbed);
 
